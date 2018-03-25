@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yapılacaklar Listesi</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+    <style>
+
+        body {
+            background-color: #0984e3;
+        }
+
+        form input {
+            border-radius: 5px;
+            
+        }
+
+        #textbar {
+            width: 300px;
+            height: 16px;
+        }
+        button {
+            
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .yazılar {
+            color: #d63031;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .sil-buton {
+            background-color: #e17055;
+        }
+        .ok-buton {
+            background-color: #55efc4;
+           
+            font-weight: bold;
+        } 
+    div {
+        padding: 4px;
+    }
+    </style>
+
+</head>
+<body>
+<div id="app">
+
+    <div class="form">
+        <form>
+            <input id="textbar"type="text" v-model="textbar" placeholder="Yeni bir görev girin" >
+            <input class="ok-buton" type="submit" value="Ekle" v-on:click="ekle" :disabled="!textbar.length">
+        </form>
+    </div>
+<div class="yapılacaklar">
+    <h1>Yapılacaklar Listesi ( {{liste.length}} adet)</h1>
+    <p v-if='!liste.length'>Yapılacaklar Listesi Boş</p>
+    <div class="yazılar" v-for='(item,index) in liste' :key="item.id">
+    <button class="ok-buton" v-on:click='tamamla(index)'>Tamam</button>
+    <button class = "sil-buton" v-on:click='listedenSil(index)'>Sil</button> - {{item}}
+
+</div>
+<hr>
+
+<div class="tamamlananlar">
+    <h1 v-if='tamamlananlar.length' >Tamamlananlar ( {{tamamlananlar.length}} adet)</h1>
+    <div class="yazılar" v-for='(item,index) in tamamlananlar' :key="item.id">
+    <button class = "geri-al-buton" v-on:click='geriAl(index)'>Geri Al</button>
+    <button class = "sil-buton" v-on:click='tamamlananSil(index)'>Sil</button> - {{item}} 
+
+</div>
+
+</div>
+
+    </div>
+    <script src="./main.js"></script>
+</body>
+</html>
