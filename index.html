@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,22 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 
     <style>
-
         body {
             background-color: #0984e3;
         }
 
         form input {
             border-radius: 5px;
-            
+
         }
 
         #textbar {
             width: 300px;
             height: 16px;
         }
+
         button {
-            
+
             border-radius: 5px;
             font-weight: bold;
         }
@@ -35,49 +36,62 @@
         }
 
         .sil-buton {
-            background-color: #e17055;
+            width: 20px;
+           height: 20px;
+           /* background-color: #55efc4; */
+            background: url('./icons/del.png') no-repeat center;
+            background-size: contain;
         }
+
         .ok-buton {
-            background-color: #55efc4;
-           
+           width: 20px;
+           height: 20px;
+           /* background-color: #55efc4; */
+            background: url('./icons/ok.png') no-repeat center;
+            background-size: contain;
+             
+
             font-weight: bold;
-        } 
-    div {
-        padding: 4px;
-    }
+        }
+
+        div {
+            padding: 4px;
+        }
     </style>
 
 </head>
+
 <body>
-<div id="app">
+    <div id="app">
 
-    <div class="form">
-        <form>
-            <input id="textbar"type="text" v-model="textbar" placeholder="Yeni bir görev girin" >
-            <input class="ok-buton" type="submit" value="Ekle" v-on:click="ekle" :disabled="!textbar.length">
-        </form>
-    </div>
-<div class="yapılacaklar">
-    <h1>Yapılacaklar Listesi ( {{liste.length}} adet)</h1>
-    <p v-if='!liste.length'>Yapılacaklar Listesi Boş</p>
-    <div class="yazılar" v-for='(item,index) in liste' :key="item.id">
-    <button class="ok-buton" v-on:click='tamamla(index)'>Tamam</button>
-    <button class = "sil-buton" v-on:click='listedenSil(index)'>Sil</button> - {{item}}
+        <div class="form">
+            <form>
+                <input id="textbar" type="text" v-model="textbar" autofocus placeholder="Yeni bir görev girin">
+                <input class="ok-buton" type="submit" value="Ekle" v-on:click="ekle" :disabled="!textbar.length">
+            </form>
+        </div>
+        <div class="yapılacaklar">
+            <h1>Yapılacaklar Listesi ( {{liste.length}} adet)</h1>
+            <p v-if='!liste.length'>Yapılacaklar Listesi Boş</p>
+            <div class="yazılar" v-for='(item,index) in liste' :key="item.id">
+                <button class="ok-buton" v-on:click='tamamla(index)'></button>
+                <button class="sil-buton" v-on:click='listedenSil(index)'></button> - {{item}}
 
-</div>
-<hr>
+            </div>
+            <hr>
 
-<div class="tamamlananlar">
-    <h1 v-if='tamamlananlar.length' >Tamamlananlar ( {{tamamlananlar.length}} adet)</h1>
-    <div class="yazılar" v-for='(item,index) in tamamlananlar' :key="item.id">
-    <button class = "geri-al-buton" v-on:click='geriAl(index)'>Geri Al</button>
-    <button class = "sil-buton" v-on:click='tamamlananSil(index)'>Sil</button> - {{item}} 
+            <div class="tamamlananlar">
+                <h1 v-if='tamamlananlar.length'>Tamamlananlar ( {{tamamlananlar.length}} adet)</h1>
+                <div class="yazılar" v-for='(item,index) in tamamlananlar' :key="item.id">
+                    <button class="geri-al-buton" v-on:click='geriAl(index)'>Geri Al</button>
+                    <button class="sil-buton" v-on:click='tamamlananSil(index)'></button> - {{item}}
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-    </div>
-    <script src="./main.js"></script>
+        </div>
+        <script src="./main.js"></script>
 </body>
+
 </html>
